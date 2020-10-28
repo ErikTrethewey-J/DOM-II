@@ -8,7 +8,6 @@ topImg.forEach((e)=>{e.addEventListener('mouseover', (x)=> x.target.style.border
 
 function zoom(event){
     event.preventDefault();
-
     scale += event.deltaY * -0.01;
     scale = Math.min(Math.max(.125, scale, 4));
     lastImg[0].style.transform = `scale(${scale})`;
@@ -17,18 +16,30 @@ function zoom(event){
 
 let scale = 1;
 const lastImg = document.querySelectorAll('img')
-lastImg.onwheel = zoom;
+lastImg[0].onwheel = zoom;
 
 
 const allButton = document.querySelectorAll('.btn');
 allButton.forEach((e)=> e.addEventListener('dblclick', ()=> alert("Are you sure?")))
 
-const value = document.querySelectorAll('p');
+const logo = document.querySelector('h1');
 
-function logSelection(event){
-    const log = document.getElementById('p');
-    const selection = event.target.value.substring(evet.target.selectionStart, event.target.selectionEnd);
-    log.textContent =`You selected: ${selection}`;
-}
-const input = document.querySelector('value');
-input.addEventListener('select', logSelection)
+document.addEventListener('keydown', (x) =>{ 
+    if (x.key === 'Shift'){
+        logo.setAttribute('style', 'transform: rotate(.5turn)')
+    } else if (x.key === 'Enter') {
+        logo.setAttribute('style', 'transform: none')
+    }
+});
+
+window.addEventListener('load', (event) => {
+    alert('page is fully loaded');
+  });
+
+const a = document.querySelector('body')
+
+  window.addEventListener('resize', ()=> a.setAttribute('style', 'background: green'));
+
+  window.addEventListener('copy', (event) => {
+    alert('copy action initiated')
+});
